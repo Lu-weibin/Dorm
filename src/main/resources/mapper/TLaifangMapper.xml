@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssm.mapper.TLaifangMapper" >
+  <resultMap id="BaseResultMap" type="com.ssm.pojo.TLaifang" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="laifangren" property="laifangren" jdbcType="VARCHAR" />
+    <result column="idcardnum" property="idcardnum" jdbcType="VARCHAR" />
+    <result column="relation" property="relation" jdbcType="VARCHAR" />
+    <result column="xuehao" property="xuehao" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="matter" property="matter" jdbcType="VARCHAR" />
+    <result column="ltime" property="ltime" jdbcType="VARCHAR" />
+    <result column="qtime" property="qtime" jdbcType="VARCHAR" />
+    <result column="louhao" property="louhao" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, laifangren, idcardnum, relation, xuehao, name, matter, ltime, qtime, louhao
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.ssm.pojo.TLaifangExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_laifang
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_laifang
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_laifang
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ssm.pojo.TLaifangExample" >
+    delete from t_laifang
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ssm.pojo.TLaifang" >
+    insert into t_laifang (id, laifangren, idcardnum, 
+      relation, xuehao, name, 
+      matter, ltime, qtime, 
+      louhao)
+    values (#{id,jdbcType=INTEGER}, #{laifangren,jdbcType=VARCHAR}, #{idcardnum,jdbcType=VARCHAR}, 
+      #{relation,jdbcType=VARCHAR}, #{xuehao,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{matter,jdbcType=VARCHAR}, #{ltime,jdbcType=VARCHAR}, #{qtime,jdbcType=VARCHAR}, 
+      #{louhao,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ssm.pojo.TLaifang" >
+    insert into t_laifang
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="laifangren != null" >
+        laifangren,
+      </if>
+      <if test="idcardnum != null" >
+        idcardnum,
+      </if>
+      <if test="relation != null" >
+        relation,
+      </if>
+      <if test="xuehao != null" >
+        xuehao,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="matter != null" >
+        matter,
+      </if>
+      <if test="ltime != null" >
+        ltime,
+      </if>
+      <if test="qtime != null" >
+        qtime,
+      </if>
+      <if test="louhao != null" >
+        louhao,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="laifangren != null" >
+        #{laifangren,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardnum != null" >
+        #{idcardnum,jdbcType=VARCHAR},
+      </if>
+      <if test="relation != null" >
+        #{relation,jdbcType=VARCHAR},
+      </if>
+      <if test="xuehao != null" >
+        #{xuehao,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="matter != null" >
+        #{matter,jdbcType=VARCHAR},
+      </if>
+      <if test="ltime != null" >
+        #{ltime,jdbcType=VARCHAR},
+      </if>
+      <if test="qtime != null" >
+        #{qtime,jdbcType=VARCHAR},
+      </if>
+      <if test="louhao != null" >
+        #{louhao,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ssm.pojo.TLaifangExample" resultType="java.lang.Integer" >
+    select count(*) from t_laifang
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_laifang
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.laifangren != null" >
+        laifangren = #{record.laifangren,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idcardnum != null" >
+        idcardnum = #{record.idcardnum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.relation != null" >
+        relation = #{record.relation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.xuehao != null" >
+        xuehao = #{record.xuehao,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.matter != null" >
+        matter = #{record.matter,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ltime != null" >
+        ltime = #{record.ltime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qtime != null" >
+        qtime = #{record.qtime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.louhao != null" >
+        louhao = #{record.louhao,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_laifang
+    set id = #{record.id,jdbcType=INTEGER},
+      laifangren = #{record.laifangren,jdbcType=VARCHAR},
+      idcardnum = #{record.idcardnum,jdbcType=VARCHAR},
+      relation = #{record.relation,jdbcType=VARCHAR},
+      xuehao = #{record.xuehao,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      matter = #{record.matter,jdbcType=VARCHAR},
+      ltime = #{record.ltime,jdbcType=VARCHAR},
+      qtime = #{record.qtime,jdbcType=VARCHAR},
+      louhao = #{record.louhao,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ssm.pojo.TLaifang" >
+    update t_laifang
+    <set >
+      <if test="laifangren != null" >
+        laifangren = #{laifangren,jdbcType=VARCHAR},
+      </if>
+      <if test="idcardnum != null" >
+        idcardnum = #{idcardnum,jdbcType=VARCHAR},
+      </if>
+      <if test="relation != null" >
+        relation = #{relation,jdbcType=VARCHAR},
+      </if>
+      <if test="xuehao != null" >
+        xuehao = #{xuehao,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="matter != null" >
+        matter = #{matter,jdbcType=VARCHAR},
+      </if>
+      <if test="ltime != null" >
+        ltime = #{ltime,jdbcType=VARCHAR},
+      </if>
+      <if test="qtime != null" >
+        qtime = #{qtime,jdbcType=VARCHAR},
+      </if>
+      <if test="louhao != null" >
+        louhao = #{louhao,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ssm.pojo.TLaifang" >
+    update t_laifang
+    set laifangren = #{laifangren,jdbcType=VARCHAR},
+      idcardnum = #{idcardnum,jdbcType=VARCHAR},
+      relation = #{relation,jdbcType=VARCHAR},
+      xuehao = #{xuehao,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      matter = #{matter,jdbcType=VARCHAR},
+      ltime = #{ltime,jdbcType=VARCHAR},
+      qtime = #{qtime,jdbcType=VARCHAR},
+      louhao = #{louhao,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
